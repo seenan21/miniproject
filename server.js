@@ -1,7 +1,7 @@
 const express = require('express')  // We import the express application
 const cors = require('cors') // Necessary for localhost
 const app = express() // Creates an express application in app
-
+const setupLogger = require('./utils')
 /**
  * Initial application setup
  * We need to use cors so we can connect to a localhost later
@@ -9,6 +9,8 @@ const app = express() // Creates an express application in app
  */
 app.use(cors())
 app.use(express.json())
+app.use(setupLogger()) 
+
 
 
 /**
@@ -58,8 +60,15 @@ app.get('/api/currency/', (request, response) => {
  * @receives a get request to the URL: http://localhost:3001/api/currency/:id
  * @responds with returning specific data as a JSON
  */
-app.get('...', (request, response) => {
-
+app.get('/api/currency/:id', (request, response) => {
+const id = request.params.id;
+const currency = currencies.find(currency => currency.id === id);
+if (currency) {
+  response.json(currency);
+}
+else {
+    response.status(400).send({error: 'resource not found'});
+}
 
 })
 
@@ -69,9 +78,13 @@ app.get('...', (request, response) => {
  * with data object enclosed
  * @responds by returning the newly created resource
  */
-app.post('...', (request, response) => {
-
-
+app.post('api/currency', (request, response) => {
+const currency = request.body;
+if (!currency.id || !currency.currencyCode || !currency.country || !currency.conversionRate) {
+  response.status(400).send({error: 'content missing'});
+}
+currencies.push(currency);
+response.json(currency);
 })
 
 /**
@@ -81,8 +94,14 @@ app.post('...', (request, response) => {
  * Hint: updates the currency with the new conversion rate
  * @responds by returning the newly updated resource
  */
-app.put('...', (request, response) => {
-  
+app.put('api/currency/:id/:newRate', (request, response) => {
+  const newRate = request.params.newRate;
+  const id = request.params.id;
+  const currency = currencies.find(currency => currency.id === id);
+  if (currrency) {
+    currency.conversionRate = newRate;
+    response.json(currency);
+  }
 })
 
 /**
@@ -90,9 +109,16 @@ app.put('...', (request, response) => {
  * @receives a delete request to the URL: http://localhost:3001/api/currency/:id,
  * @responds by returning a status code of 204
  */
-app.post('...', (request, response) => {
+app.post('api/currency/:id', (request, response) => {
+  const id = request.params.id;
+  var new_currencies = currencies.filter(currency => currency.id !== id);
+  currencies = new_currencies;
+  response.status(202).send({message: 'resource deleted'});
 
+})
 
+app.use((request, response) => {
+  response.status(404).send({error: 'unknown endpoint'});
 })
 
 const PORT = 3001
