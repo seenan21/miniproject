@@ -15,7 +15,7 @@ const Currency = sequelize.define('currency', {
     },
     countryId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: Country,
             key: 'id'
