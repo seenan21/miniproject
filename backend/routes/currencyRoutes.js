@@ -49,7 +49,7 @@ else {
  */
 router.post('/api/currency', async (request, response) => {
   const currency = request.body;
-  if (!currency.id || !currency.currencyCode || !currency.countryId || !currency.conversionRate) {
+  if (!currency.currencyCode || !currency.countryId || !currency.conversionRate) {
     return response.status(400).send({error: 'content missing'});
   }
   try {
