@@ -1,1 +1,74 @@
 GET http://localhost:3001/api/currency/
+
+
+
+# Add USA
+POST /api/country HTTP/1.1
+Host: localhost:3001
+Content-Type: application/json
+Cookie: connect.sid=s%3Avgj4NauU6jMp2J34oar9PP-RRbzU7hhg.MiPC2g%2Fg%2Bw%2FTTqAjdH%2FZi2n8Y%2FpY%2FFlWnIiz4Qhu0CQ
+Content-Length: 23
+
+{
+  "name": "USA"
+}
+
+
+
+#Add Canada
+POST /api/country HTTP/1.1
+Host: localhost:3001
+Content-Type: application/json
+Cookie: connect.sid=s%3Avgj4NauU6jMp2J34oar9PP-RRbzU7hhg.MiPC2g%2Fg%2Bw%2FTTqAjdH%2FZi2n8Y%2FpY%2FFlWnIiz4Qhu0CQ
+Content-Length: 26
+
+{
+  "name": "Canada"
+}
+
+
+
+#Add CAD
+POST /api/currency HTTP/1.1
+Host: localhost:3001
+Content-Type: application/json
+Cookie: connect.sid=s%3Avgj4NauU6jMp2J34oar9PP-RRbzU7hhg.MiPC2g%2Fg%2Bw%2FTTqAjdH%2FZi2n8Y%2FpY%2FFlWnIiz4Qhu0CQ
+Content-Length: 88
+
+{
+  "id": 2,
+  "currencyCode": "CAD",
+  "countryId": 2,
+  "conversionRate": 1.0
+}
+
+
+
+#Add USD
+POST /api/currency HTTP/1.1
+Host: localhost:3001
+Content-Type: application/json
+Cookie: connect.sid=s%3Avgj4NauU6jMp2J34oar9PP-RRbzU7hhg.MiPC2g%2Fg%2Bw%2FTTqAjdH%2FZi2n8Y%2FpY%2FFlWnIiz4Qhu0CQ
+Content-Length: 88
+
+{
+  "id": 1,
+  "currencyCode": "USA",
+  "countryId": 1,
+  "conversionRate": 1.0
+}
+
+
+#Get currency-country
+GET /api/currency-countryName HTTP/1.1
+Host: localhost:3001
+Content-Type: application/json
+Cookie: connect.sid=s%3Avgj4NauU6jMp2J34oar9PP-RRbzU7hhg.MiPC2g%2Fg%2Bw%2FTTqAjdH%2FZi2n8Y%2FpY%2FFlWnIiz4Qhu0CQ
+Content-Length: 88
+
+{
+  "id": 2,
+  "currencyCode": "CAD",
+  "countryId": 5,
+  "conversionRate": 1.0
+}
