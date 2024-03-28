@@ -1,4 +1,4 @@
-const convertCurrency = require('../utils/currency_utils') // Update this
+import convertCurrency from '../utils/currency_utils' // Update this
 
 /**
  * The tests below will be based on the following conversion amounts,
