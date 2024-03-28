@@ -1,7 +1,6 @@
 import React from "react";
 import convertCurrency from "../utils/currency_utils";
 
-
 const Conversion = () => {
 
     const [newAmount, setNewAmount] = React.useState(0);

@@ -37,6 +37,11 @@ app.use((request, response) => {
 })
 
 const PORT = 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`)
-})
+
+let server = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+if (process.env.NODE_ENV === 'test') {
+  // In test environment, export the app instance for testing
+  module.exports =  server;
+}

@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const Currency = require('../models/Currency');  
+require('dotenv').config()
+let Currency;
 
-
+if (process.env.NODE_ENV === "test") {
+  Currency = require('../models/testCurrency');
+} else {
+  Currency = require('../models/Currency');
+}
 
 
 /**
